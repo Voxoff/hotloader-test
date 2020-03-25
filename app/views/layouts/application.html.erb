@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HotloaderTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <% if Rails.env.production? %>
+      <script>
+        (function(d,s){var u=window.location.href,e=d.getElementsByTagName(s)[0],g=d.createElement(s);g.async=true;g.src='https://getchestnut.herokuapp.com/api/v1/trackers/Pledge?url='+u;e.parentNode.insertBefore(g,e);
+        })(document, 'script')
+      </script>
+    <% else %>
+      <script>
+        (function(d,s){var u=window.location.href,e=d.getElementsByTagName(s)[0],g=d.createElement(s);g.async=true;g.src='http://localhost:3000/api/v1/trackers/Pledge?url='+u;e.parentNode.insertBefore(g,e);
+        })(document, 'script')
+      </script>
+      <img src="http://localhost:3000/api/v1/trackers/Pledge?noscript=1" height="1" width="1">
+    <% end %>
+
+<!-- <script>
+  var u=window.location.href,h = new XMLHttpRequest();
+  h.open("GET", 'http://getchestnut.herokuapp.com/api/v1/trackers/Pledge?url='+u);h.send();
+</script>
+ -->
+
+    <!-- Matomo -->
+<!-- <script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://getchestnut.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/getchestnut.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script> -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXX');</script>
+<!-- End Google Tag Manager -->
+<!-- End Matomo Code -->
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
